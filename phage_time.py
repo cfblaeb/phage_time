@@ -27,4 +27,3 @@ with open('phage_time.sh', 'w') as fi:
 			break
 
 		time += 30
-		break

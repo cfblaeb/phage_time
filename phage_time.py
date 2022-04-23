@@ -12,11 +12,10 @@ newest_date = datetime.fromtimestamp(max([x.stat().st_mtime for x in Path(fastq_
 time = 30
 with open('phage_time.sh', 'w') as fi:
 	fi.write("#!/bin/bash\n")
-	fi.write(f"rm -f {fastq_out}/*\n")
 	fi.write("eval \"$('/zhome/89/0/75762/miniconda3/bin/conda' 'shell.bash' 'hook')\"\n")
-	fi.write("conda	activate e2\n")
+	fi.write("conda activate e2\n")
 	fi.write("cd /work1/laeb/phage_umi/\n")
-
+	fi.write(f"rm -f {fastq_out}*\n")
 	fi.write('echo -e "Time\\tReads\\tUmis" > phage_time.tsv\n')
 	while True:
 

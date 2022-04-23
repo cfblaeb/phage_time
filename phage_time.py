@@ -22,7 +22,7 @@ with open('phage_time.sh', 'w') as fi:
 
 		timestamp = oldest_date + timedelta(minutes=time)
 		fi.write(f"echo {time}\n")
-		fi.write(f"find {fastq_in} ! -newermt '{timestamp.isoformat()}' -exec ln -sf '{{}}' {fastq_out} ';'\n")
+		fi.write(f"find {fastq_in} ! -newermt '{timestamp.isoformat()}' -exec ln -sf ../'{{}}' {fastq_out} ';'\n")
 		fi.write("snakemake -j 30 --configfile config_r10.yml --snakefile Snakefile\n")
 		fi.write(f"echo -en '{time}\\t' >> phage_time.tsv\n")
 		fi.write("head -n 1 r10_output/stats/umi_filter_reads_stats.txt | awk '{printf $3 \"\\t\"}' >> phage_time.tsv\n")
